@@ -98,6 +98,7 @@ function initRules() {
     ];
     //rules[1] = ['245:235', '', '28:23', '', '248:37', '']; // fire!
     //rules[1] = ['25:7', '']; // diam acid
+    // TEST
     rules[1] = ["247:06", "6:015", "2:2", "36:3"];
     if(urlParams.get('random')==2) {
       var rule0 = [];
