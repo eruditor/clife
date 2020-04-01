@@ -98,7 +98,6 @@ function initRules() {
     ];
     //rules[1] = ['245:235', '', '28:23', '', '248:37', '']; // fire!
     //rules[1] = ['25:7', '']; // diam acid
-    // TEST
     rules[1] = ["247:06", "6:015", "2:2", "36:3"];
     if(urlParams.get('random')==2) {
       var rule0 = [];
@@ -771,7 +770,7 @@ function initClicks() {
     var x = floor(ev.offsetX / zoom);
     var y = floor(ev.offsetY / zoom);
     for(var z=0; z<az; z++) {
-      console.log(F[C(T1,z,x,y)]);
+      console.log(G[F[C(T1,z,x,y)]]);
     }
     SetPixel(x*zoom, y*zoom, 255, 255, 255);  fctx.putImageData(fimg, 0, 0);
   });
