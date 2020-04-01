@@ -1,7 +1,3 @@
-// (c) eruditor.ru, Sergei Kuznetsov
-// feel free to use or modify it as you need
-
-// GET PARAMETERS /////////////////////////////////////////////////////////////////////////////////////////
 
 const urlParams = new URLSearchParams(window.location.search);
 
