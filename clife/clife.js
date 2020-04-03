@@ -19,7 +19,7 @@ genotypeAccuracy = 100; // genotypes with genes different less than 1/this consi
 
 nG = 18; // number of genes
 
-perturn = 1 + round(0.5*ax*ay); // number of point counted per turn for Monte Carlo
+perturn = 1 + round(0.5*ax*ay*az); // number of point counted per turn for Monte Carlo
 
 // PRESETS /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -48,7 +48,7 @@ function initRules() {
   if(urlParams.get('random')==1) { // random rules to look for something new and interesting
     var rule0 = [];
     for(var v=0; v<7; v++) {
-      rule0[v] = randbs(true) + ':' + randbs(false);
+      rule0[v] = randbs(2) + ':' + randbs(0);
     }
     rules[0] = rule0;
     console.log(rule0);
@@ -76,7 +76,7 @@ function initRules() {
       ]
     ];
   }
-  else if(nT==2) { // Multi-layer (xlife)
+  else if(az>1) { // Multi-layer (xlife)
     rules = [
       [ // plants
         //  '357:1358',  // Amoeba
@@ -88,8 +88,9 @@ function initRules() {
       ],
       [ // herbivores
         '37:235',
-        '368:237',
+        '',
         '358:235',
+        //'38:1234', '368:237', '36:2357', '358:02348', '38:0236', '35:1234', '37:345', '38:023468', '378:345',
       ],
       [ // carnivores
         '2:013',
@@ -98,11 +99,18 @@ function initRules() {
     ];
     //rules[1] = ['245:235', '', '28:23', '', '248:37', '']; // fire!
     //rules[1] = ['25:7', '']; // diam acid
-    rules[1] = ["247:06", "6:015", "2:2", "36:3"];
     if(urlParams.get('random')==2) {
       var rule0 = [];
-      for(var v=0; v<7; v++) {
-        rule0[v] = randbs(true) + ':' + randbs(false);
+      for(var v=0; v<9; v++) {
+        for(var i=0; i<100; i++) {
+          var b = randbs(3);
+          if(intval(b.charAt(0))<=3) break;
+        }
+        for(var i=0; i<100; i++) {
+          var s = randbs(0);
+          if(intval(s.charAt(0))<=3) break;
+        }
+        rule0[v] = b + ':' + s;
       }
       rules[1] = rule0;
       console.log(rule0);
@@ -524,11 +532,14 @@ function ShowStats() {
 
 // RULES /////////////////////////////////////////////////////////////////////////////////////////
 
-function randbs(no012=false) {
-  var r = '', d0 = -1;
+function randbs(start=0) {
+  var r = '', d0 = -1, d;
   for(var i=0; i<9; i++) {
-    var d = rnd(no012?2:0, 9);
-    if(d<=d0) break;
+    d = rnd(start, 9);
+    if(d<=d0) {
+      if(i>2) break;
+      else continue;
+    }
     d0 = d;
     r += d.toString();
   }
