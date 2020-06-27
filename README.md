@@ -8,3 +8,5 @@ Cellular automata based on classic Conway's Game of Life, extending it with:
 But preserving the original philosophy of Game of Life - very simple rules leading to very complex behavior.
 
 Pure browser JavaScript, <canvas> + ArrayBuffer. Tending to maximum performance on absolutely every device.
+
+For WebGL2 version see https://github.com/eruditor/glife
